@@ -1,11 +1,8 @@
-import 'babel-polyfill';
-import React, {PropTypes} from 'react';
-import {render} from 'react-dom';
-import {Router, browserHistory} from 'react-router';
-import routes from './routes';
-import './assets/styles/styles.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 
-render (
-    <Router history={browserHistory} routes={routes} />,
-    document.getElementById('resume-wrapper')
-)
+ReactDOM.render(<App />, document.getElementById('root'));
+registerServiceWorker();
