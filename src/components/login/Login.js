@@ -3,6 +3,8 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import axios from 'axios';
+
 class Login extends React.Component {
   constructor(props){
     super(props);
@@ -11,23 +13,22 @@ class Login extends React.Component {
     password:''
     }
   }
-  handleClick(event){
+  handleClick(event) {
     var apiBaseUrl = "http://localhost:4000/api/";
-    var self = this;
     var payload={
       "email":this.state.username,
       "password":this.state.password
     }
     axios.post(apiBaseUrl+'login', payload)
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
-        if(response.data.code == 200){
+        if(response.data.code === 200){
           console.log("Login successfull");
-          var uploadScreen=[];
-          uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
-          self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
+          //let uploadScreen=[];
+          //uploadScreen.push(<UploadScreen appContext={self.props.appContext}/>)
+          //self.props.appContext.setState({loginPage:[],uploadScreen:uploadScreen})
         }
-        else if(response.data.code == 204){
+        else if(response.data.code === 204){
           console.log("Username password do not match");
           alert("username password do not match")
         }
@@ -36,7 +37,7 @@ class Login extends React.Component {
           alert("Username does not exist");
         }
       })
-    .catch(function (error) {
+    .catch((error) => {
     console.log(error);
     });
   }
