@@ -3,43 +3,33 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import axios from 'axios';
+import httpService from '../../utility/httpService';
+import urlFetcher from '../../utility/urlFetcher';
 
 class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={
-    username:'',
-    password:''
+      username:'',
+      password:''
     }
   }
   handleClick(event) {
-    axios({
-      method: 'post',
-      url: 'https://hidden-eyrie-85515.herokuapp.com/api/authenticate',
-      body: {
-        name :this.state.username,
-      },
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+    httpService.post({
+      url: urlFetcher.getUrl('authenticate')
     }).then((response) => {
       console.log(response);
-      if(response.status === 200){
+      if(response.data.success){
         console.log("Login successfull");
       }
-      else if(response.status === 204){
-        console.log("Username password do not match");
-        alert("username password do not match")
-      }
       else{
-        console.log("Username does not exists");
-        alert("Username does not exist");
+        console.log("User does not exist, Please register first");
+        alert("User does not exist, Please register first");
       }
     })
     .catch((error) => {
       console.log(error);
-    });
+    });;
   }
 
   render() {

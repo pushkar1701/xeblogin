@@ -1,5 +1,4 @@
-class urlFetcher {
-    
+class urlFetcher { 
     getUrl(type) {
         var baseLoginUrl = 'https://hidden-eyrie-85515.herokuapp.com/';
         var baseDataUrl = 'http swapi.co/api/'
@@ -7,9 +6,13 @@ class urlFetcher {
             case 'authenticate': 
                 return baseLoginUrl + 'api/authenticate';
             case 'register':
-                return baseLoginUrl + '/signup';
+                return baseLoginUrl + 'signup';
             case 'search':
-                return baseDataUrl + 'planets'
+                return baseDataUrl + 'planets';
+            default:
+                return baseDataUrl;
         }
     }
 }
+
+export default new urlFetcher();
