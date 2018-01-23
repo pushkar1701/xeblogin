@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import httpService from '../../utility/httpService';
 import urlFetcher from '../../utility/urlFetcher';
+import Paper from 'material-ui/Paper';
 
 class Login extends React.Component {
   constructor(props){
@@ -40,20 +41,24 @@ class Login extends React.Component {
           <AppBar
             title="Login"
           />
-          <TextField
-            hintText="Enter your Username"
-            floatingLabelText="Username"
-            onChange = {(event,newValue) => this.setState({username:newValue})}
-            />
-          <br/>
-            <TextField
-              type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
-              onChange = {(event,newValue) => this.setState({password:newValue})}
-              />
-            <br/>
-            <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+          <div className="login=form-container">
+            <Paper style={this.props.style}>
+                <TextField
+                  hintText="Enter your Username"
+                  floatingLabelText="Username"
+                  onChange = {(event,newValue) => this.setState({username:newValue})}
+                />
+                <br/>
+                <TextField
+                  type="password"
+                  hintText="Enter your Password"
+                  floatingLabelText="Password"
+                  onChange = {(event,newValue) => this.setState({password:newValue})}
+                />
+                <br/>
+                <RaisedButton label="Submit" primary={true} style={style} onClick={(event) => this.handleClick(event)}/>
+              </Paper>            
+            </div>
         </div>
         </MuiThemeProvider>
       </div>
